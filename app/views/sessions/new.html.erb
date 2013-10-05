@@ -1,0 +1,12 @@
+<h1><%= t('session.new.heading') %></h1>
+
+<%= simple_form_for @session, :url => sign_in_path do |f| %>
+  <%= display_alert(f.error(:base), 'error') %>
+
+  <%= f.input :account_email %>
+  <%= f.input :password %>
+
+  <%= f.button :submit, 'Log In', :class => 'secondary-button' %>
+<% end %>
+
+<%= link_to t('cta.create_new_account'), new_account_path %>

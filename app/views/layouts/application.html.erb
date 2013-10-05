@@ -8,6 +8,14 @@
 </head>
 <body>
 
+<% if user_logged_in? %>
+  <%= link_to 'Log Out', sign_out_path %>
+<% else %>
+  <%= link_to 'Log In', sign_in_path %>
+<% end %>
+
+<%= display_flash_alert %>
+
 <%= yield %>
 
 </body>
