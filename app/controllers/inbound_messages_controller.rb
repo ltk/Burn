@@ -9,8 +9,6 @@ class InboundMessagesController < ApplicationController
   def create
     inbound_messages.each(&:save)
     render :nothing => true, :status => 200
-  rescue
-    render :nothing => true, :status => 403
   end
 
   private
