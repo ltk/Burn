@@ -3,7 +3,7 @@ Burn::Application.routes.draw do
 
   resources :burners
   resources :email_addresses
-  resources :inbound_messages, :only => [:create]
+  resources :inbound_messages, :only => [:create, :show]
 
   get  'sign_in'  => 'sessions#new'
   post 'sign_in'  => 'sessions#create'

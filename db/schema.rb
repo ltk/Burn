@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131005235245) do
+ActiveRecord::Schema.define(version: 20131006172736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,26 @@ ActiveRecord::Schema.define(version: 20131005235245) do
   add_index "email_addresses", ["address", "user_id"], name: "index_email_addresses_on_address_and_user_id", unique: true, using: :btree
   add_index "email_addresses", ["user_id"], name: "index_email_addresses_on_user_id", using: :btree
 
+  create_table "inbound_messages", force: true do |t|
+    t.text     "raw",        null: false
+    t.text     "headers",    null: false
+    t.string   "from_email", null: false
+    t.string   "from_name"
+    t.text     "to",         null: false
+    t.string   "email",      null: false
+    t.text     "subject",    null: false
+    t.integer  "spam_score", null: false
+    t.string   "spf_result", null: false
+    t.boolean  "dkim_valid", null: false
+    t.integer  "burner_id",  null: false
+    t.text     "html"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "inbound_messages", ["burner_id"], name: "index_inbound_messages_on_burner_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "account_email"
     t.string   "crypted_password"
@@ -47,5 +67,7 @@ ActiveRecord::Schema.define(version: 20131005235245) do
   add_foreign_key "burners", "users", :name => "burners_user_id_fk", :dependent => :delete
 
   add_foreign_key "email_addresses", "users", :name => "email_addresses_user_id_fk", :dependent => :delete
+
+  add_foreign_key "inbound_messages", "burners", :name => "inbound_messages_burner_id_fk", :dependent => :delete
 
 end

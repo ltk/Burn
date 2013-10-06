@@ -17,4 +17,5 @@ class User < ActiveRecord::Base
 
   has_many :burners
   has_many :email_addresses
+  has_many :inbound_messages, :through => :burners
 end

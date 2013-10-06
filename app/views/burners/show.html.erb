@@ -7,3 +7,14 @@
 <%= link_to 'Burn', burner_path(@burner), :method => :delete %>
 
 <h2>Messages</h2>
+<%- if @burner.inbound_messages.any? -%>
+  <ul>
+    <%- @burner.inbound_messages.each do |message| -%>
+      <li>
+        <%= link_to message.subject, message %>
+      </li>
+    <%- end -%>
+  </ul>
+<%- else -%>
+  No messages yet.
+<%- end -%>

@@ -6,19 +6,20 @@ class Burner < ActiveRecord::Base
 
   belongs_to :email_address
   belongs_to :user
+  has_many :inbound_messages
 
   before_validation :set_unique_slug
 
   # ToDo: Verify user ownership of email_address
 
   def inbound_address
-    [slug, inbound_host].join('@')
+    ["#{slug}-in", inbound_host].join('@')
   end
 
   private
 
   def inbound_host
-    'i.burnem.com'
+    'lawkur.com'
   end
 
   def new_slug
