@@ -1,15 +1,15 @@
 class InboundMessage < ActiveRecord::Base
-  validates :raw,
-            :headers,
-            :from_email,
-            :to,
-            :email,
-            :subject,
-            :spam_score,
-            :spf_result,
-            :dkim_valid,
-            :burner,
-            :presence => true
+  # validates :raw,
+  #           :headers,
+  #           :from_email,
+  #           :to,
+  #           :email,
+  #           :subject,
+  #           :spam_score,
+  #           :spf_result,
+  #           :dkim_valid,
+  #           :burner,
+  #           :presence => true
 
   belongs_to :burner
 
