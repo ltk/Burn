@@ -12,6 +12,8 @@ gem 'nokogiri'
 gem 'simple_form', '~>3.0'
 gem 'foreigner'
 
+gem 'rails_12factor', group: :production
+
 gem 'simplest_auth',
   :github => 'vigetlabs/simplest_auth',
   :branch => 'rails-4'
