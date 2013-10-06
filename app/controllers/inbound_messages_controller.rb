@@ -7,6 +7,10 @@ class InboundMessagesController < ApplicationController
   # ToDo: setup auth token for webhook URL
 
   def create
+    inbound_messages.each do |msg|
+      debug msg
+    end
+
     inbound_messages.each(&:save)
     render :nothing => true, :status => 200
   end
