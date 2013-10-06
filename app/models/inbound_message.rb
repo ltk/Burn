@@ -26,15 +26,11 @@ class InboundMessage < ActiveRecord::Base
         :subject    => e[:msg][:subject],
         :spam_score => e[:msg][:spam_report][:score],
         :spf_result => e[:msg][:spf][:result],
-        :dkim_valid => str_to_bool(e[:msg][:dkim][:valid]),
+        :dkim_valid => e[:msg][:dkim][:valid],
         :burner     => Burner.find_by_slug(slug_from_email_address(e[:msg][:email]))
   end
 
   def self.slug_from_email_address(address)
     address.split('@')[0].chomp('-in')
-  end
-
-  def self.str_to_bool(str)
-    str == 'true' ? true : false
   end
 end
