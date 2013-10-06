@@ -8,6 +8,7 @@ class InboundMessagesController < ApplicationController
 
   def create
     puts "Create"
+    puts inbound_messages
     inbound_messages.each do |msg|
       debug msg
     end
@@ -29,6 +30,7 @@ class InboundMessagesController < ApplicationController
 
   def inbound_mandrill_events
     puts "Inbound Mandrill Events"
+    puts mandrill_events
     mandrill_events.select do |event|
       event[:event] == 'inbound'
     end
@@ -36,6 +38,7 @@ class InboundMessagesController < ApplicationController
 
   def inbound_messages
     puts "Inbound Messages"
+    puts inbound_mandrill_events
     @inbound_messages ||= inbound_mandrill_events.map do |event|
       InboundMessage.from_mandrill_event(event)
     end
