@@ -1,0 +1,7 @@
+<%= simple_form_for email, :url => email_addresses_path do |f| %>
+  <%= display_alert(f.error(:base), 'error') %>
+
+  <%= f.input :address %>
+
+  <%= f.button :submit %>
+<% end %>

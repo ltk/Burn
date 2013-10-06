@@ -10,6 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'nokogiri'
 gem 'simple_form', '~>3.0'
+gem 'foreigner'
 
 gem 'simplest_auth',
   :github => 'vigetlabs/simplest_auth',

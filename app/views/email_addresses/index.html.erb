@@ -1,0 +1,15 @@
+<h1><%= t('email_addresses.index.heading') %></h1>
+
+<%= link_to t('cta.email_addresses.new'), new_email_address_path %>
+
+<%- if @emails.any? -%>
+  <ul>
+    <%- @emails.each do |email| %>
+      <li class="<%= email.status %>">
+        <%= link_to email.address, email %> (<%= email.status.to_s.titleize %>) | <%= link_to 'Remove', email_address_path(email), :method => :delete %>
+      </li>
+    <%- end -%>
+  </ul>
+<%- else -%>
+  <p>You don't have any email addresses yet.</p>
+<%- end -%>

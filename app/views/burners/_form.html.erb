@@ -1,0 +1,9 @@
+<%= simple_form_for burner do |f| %>
+  <%= display_alert(f.error(:base), 'error') %>
+
+  <%= f.association :email_address,
+                    collection: current_user.email_addresses.verified,
+                    label_method: :address %>
+
+  <%= f.button :submit %>
+<% end %>

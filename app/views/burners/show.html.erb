@@ -1,0 +1,9 @@
+<h1><%= @burner.inbound_address %></h1>
+<%- if @burner.email_address.present? %>
+  <h2>&rarr; <%= @burner.email_address.address %></h2>
+<%- end -%>
+
+<%= link_to 'Edit', edit_burner_path(@burner) %>
+<%= link_to 'Burn', burner_path(@burner), :method => :delete %>
+
+<h2>Messages</h2>

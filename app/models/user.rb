@@ -14,4 +14,7 @@ class User < ActiveRecord::Base
             :presence => true,
             :unless   => :persisted?
   validates :password, :confirmation => true
+
+  has_many :burners
+  has_many :email_addresses
 end

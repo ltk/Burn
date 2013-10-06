@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131005215300) do
+ActiveRecord::Schema.define(version: 20131005235245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "burners", force: true do |t|
+    t.string   "slug",             null: false
+    t.integer  "user_id",          null: false
+    t.integer  "email_address_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "burners", ["slug"], name: "index_burners_on_slug", unique: true, using: :btree
+
+  create_table "email_addresses", force: true do |t|
+    t.string   "address",                    null: false
+    t.integer  "user_id",                    null: false
+    t.boolean  "verified",   default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "email_addresses", ["address", "user_id"], name: "index_email_addresses_on_address_and_user_id", unique: true, using: :btree
+  add_index "email_addresses", ["user_id"], name: "index_email_addresses_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "account_email"
@@ -22,5 +43,9 @@ ActiveRecord::Schema.define(version: 20131005215300) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_foreign_key "burners", "users", :name => "burners_user_id_fk", :dependent => :delete
+
+  add_foreign_key "email_addresses", "users", :name => "email_addresses_user_id_fk", :dependent => :delete
 
 end

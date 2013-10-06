@@ -9,7 +9,7 @@ class AccountsController < User::Controller
       self.current_user = @user
       redirect_to account_url, :notice => t('c.users.create.success')
     else
-      flash[:error] = t('users.create.error')
+      flash[:error] = t('c.users.create.error')
       render :new
     end
   end

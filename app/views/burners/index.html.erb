@@ -1,0 +1,20 @@
+<h1><%= t('burners.index.heading') %></h1>
+
+<%= link_to t('cta.burners.new'), burners_path, :method => :post %>
+
+<%- if @burners.any? -%>
+  <ul>
+    <%- @burners.each do |burner| %>
+      <li>
+        <%= link_to burner.inbound_address, burner %>
+        <%- if burner.email_address.present? -%>
+          &rarr; <%= burner.email_address.address %>
+        <%- else -%>
+          (DISABLED)
+        <%- end -%>
+      </li>
+    <%- end -%>
+  </ul>
+<%- else -%>
+  <p>You don't have any burners yet.</p>
+<%- end -%>
