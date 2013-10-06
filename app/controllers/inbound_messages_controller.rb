@@ -18,7 +18,7 @@ class InboundMessagesController < ApplicationController
   end
 
   def mandrill_events
-    params[:mandrill_events] || []
+    JSON.parse(params[:mandrill_events]) || []
   end
 
   def inbound_mandrill_events
