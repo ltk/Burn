@@ -2,7 +2,7 @@ class InboundMessagesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   before_action :login_required, :only => [:show]
-  before_action :load_message,    :only => [:show]
+  before_action :load_message,   :only => [:show]
 
   # ToDo: setup auth token for webhook URL
 
